@@ -1,0 +1,71 @@
+- Ensure that you are plugged into the LAN ethernet
+- Download XAMPP version 8.1.25 https://www.apachefriends.org/download.html
+- Create a XAMPP folder wherever you want
+- Run the installer, deselect Perl and Tomcat, install into the folder created
+- Select 'Do you want to start the Control Panel now?' and hit finish
+- Ensure that the Service checkbox next to Apache and MySQL is an 'X' (uninstalled)
+- Hit the config button next to Apache, open httpd.conf
+  - Run CMD in admin: netstat -aon | findstr xxxx. Replace xxxx with example ports (ex. 8080, 8081, etc.)
+  - Increment the number until the CMD returns a blank line
+  - Find the 'Listen 80' line in httpd.conf. Replace 80 with the port that returned a blank line
+  - Run CMD in admin: ipconfig
+  - Grab the 10.92.4.xxx value
+  - Find the ServerName localhost:80 line, and replace it with your IP address from ipconfig with a : at the end
+    of it and the port after the colon. For example, 10.92.4.216:8080
+  - Find the line 'DocumentRoot "../xampp/htdocs" and edit it to add another directory for the code
+    (ex. DocumentRoot "C:/Users/estoller/Desktop/proj/meta/xamppCLL/htdocs/officeMap/public" if laravel)
+  - Save and exit
+- Hit the config button next to Apache, open httpd-ssl.conf
+  - Run CMD in admin: netstat -aon | findstr xxxx. Replace xxxx with example ports (ex. 4443, 4444, etc.)
+  - Find the line 'Listen 443' and replace 443 with the newly found port
+  - Save and exit
+- Hit the config button next to Apache, open php.ini
+  - Run CMD in admin: netstat -aon | findstr xxxx. Replace the xxxx with example ports (ex. 3306, 3307, etc.)
+  - Find the line 'mysqli.default_port=3306' and replace 3306 with the newly found port
+  - Find the line 'mysql.default_port=3306' and replace 3306 with the newly found port
+  - Save and exit
+- Hit the config button next to Apache, open phpMyAdmin
+  - Add the line: $cfg['Servers'][$i]['port'] = 'xxxx' and replace xxxx with the 330x port from the last step
+  - If you are configuring a user and password to the MySQL server:
+    - Find the user = and password = and change it to your custom defined user and password
+  - Save and exit
+- Hit the config button next to MySQL, open my.ini
+  - Find the line 'port=3306' and replace all of those lines (there will be multiple) with the 330x port
+  - If you are configuring a user and password to the MySQL server:
+    - Uncomment and configure this line with your password: '# password       = your_password'
+  - Save and exit
+- Start Apache and MySQL in XAMPP Control Panel
+- If not already installed, download and install Node.js (https://nodejs.org/en/download) version 11.3.0 set it to system path
+  variables (ex. ..\proj\meta\nodejs\)
+- Set PHP to system path variables from your XAMPP installation (ex. ..\proj\meta\xampp\php)
+- If not already installed, download and install composer (https://getcomposer.org/download/) version 2.8.9 and set to system path
+  variables (ex. ..\proj\meta\composer)
+- Move all of the code files into xampp\htdocs
+- Find the laravel.env file in the code (should just be named .env in the htdocs folder)
+  - Find this section in the .env file:
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=xxxxxxx
+    DB_USERNAME=root
+    DB_PASSWORD=
+  - Change the port to the 330x port
+  - Change the database name to the actual database in phpMyAdmin (should be already configured, if not add the database and name it officemapsystem)
+  - Change the username and password to your configured username and password (default is shown)
+  - Find this section in the .env file:
+    APP_URL=http://10.92.4.216:8080
+    VITE_DEV_SERVER_URL=http://10.92.4.216:5174 (unsure if this is actually needed)
+  - Change the URL to http://IP:808xPort, for example, http://10.92.4.216:8080
+  - Change the VITE DEV SERVER URL to http://IP:517xPort (using 'netstat -aon | findstr 517x' CMD where you chose the most recent available port),
+    for example, http://10.92.4.216:5173
+- Go to phpMyAdmin in XAMPP control panel by hitting the admin button next to MySQL, go to the import tab, and import the import text file in this directory
+- run a terminal in the directory of the code, run npm run build (if the styling still doesn't work after than, run npm run dev instead)
+- for editing the code: if not already installed, install laravel version 12.14.1, and run npm install. This project used tailwind version 4.1.6
+- run php artisan storage:link for image storage and presentation on the web
+- run php artisan migrate:fresh for db population and starting the server status checker
+- open task scheduler, find the task named dock_observe_user_activity, right click, properties, triggers, edit the trigger, and change it from 1 day to indefinitely in the
+  'for a duration of' section. sorry to make this manual, i just could not for the life of me figure out how to automate this and i dont know if you can
+- ADMIN LOGIN: dcadmin, dcadmin8162
+- To get this system functional, have all users run (or have datto run) 'H:\Administration\IT\dock_scripts\p_root-script.ps1'. This will install the powershell scripts that send dock and status
+  information to the server
+  - This will also need to run on all new computers computers that users use if we want to keep track of their laptop
