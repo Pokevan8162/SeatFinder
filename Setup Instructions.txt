@@ -66,6 +66,7 @@
 - open task scheduler, find the task named dock_observe_user_activity, right click, properties, triggers, edit the trigger, and change it from 1 day to indefinitely in the
   'for a duration of' section. sorry to make this manual, i just could not for the life of me figure out how to automate this and i dont know if you can
 - ADMIN LOGIN: dcadmin, dcadmin8162
-- To get this system functional, have all users run (or have datto run) 'H:\Administration\IT\dock_scripts\p_root-script.ps1'. This will install the powershell scripts that send dock and status
+- To get this system functional, have all users run (or have datto run) 'dock_scripts\p_root-script.ps1'. This will install the powershell scripts that send dock and status
   information to the server
+
   - This will also need to run on all new computers computers that users use if we want to keep track of their laptop
