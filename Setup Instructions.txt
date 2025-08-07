@@ -9,9 +9,9 @@
   - Increment the number until the CMD returns a blank line
   - Find the 'Listen 80' line in httpd.conf. Replace 80 with the port that returned a blank line
   - Run CMD in admin: ipconfig
-  - Grab the 10.92.4.xxx value
+  - Grab the xx.xx.x.xxx value
   - Find the ServerName localhost:80 line, and replace it with your IP address from ipconfig with a : at the end
-    of it and the port after the colon. For example, 10.92.4.216:8080
+    of it and the port after the colon. For example, xx.xx.x.xxx:8080
   - Find the line 'DocumentRoot "../xampp/htdocs" and edit it to add another directory for the code
     (ex. DocumentRoot "C:/Users/estoller/Desktop/proj/meta/xamppCLL/htdocs/officeMap/public" if laravel)
   - Save and exit
@@ -53,11 +53,11 @@
   - Change the database name to the actual database in phpMyAdmin (should be already configured, if not add the database and name it officemapsystem)
   - Change the username and password to your configured username and password (default is shown)
   - Find this section in the .env file:
-    APP_URL=http://10.92.4.216:8080
-    VITE_DEV_SERVER_URL=http://10.92.4.216:5174 (unsure if this is actually needed)
-  - Change the URL to http://IP:808xPort, for example, http://10.92.4.216:8080
+    APP_URL=http://xx.xx.x.xxx:8080
+    VITE_DEV_SERVER_URL=http://xx.xx.x.xxx:5174 (unsure if this is actually needed)
+  - Change the URL to http://IP:808xPort, for example, http://xx.xx.x.xxx:8080
   - Change the VITE DEV SERVER URL to http://IP:517xPort (using 'netstat -aon | findstr 517x' CMD where you chose the most recent available port),
-    for example, http://10.92.4.216:5173
+    for example, http://xx.xx.x.xxx:5173
 - Go to phpMyAdmin in XAMPP control panel by hitting the admin button next to MySQL, go to the import tab, and import the import text file in this directory
 - run a terminal in the directory of the code, run npm run build (if the styling still doesn't work after than, run npm run dev instead)
 - for editing the code: if not already installed, install laravel version 12.14.1, and run npm install. This project used tailwind version 4.1.6
@@ -69,4 +69,5 @@
 - To get this system functional, have all users run (or have datto run) 'dock_scripts\p_root-script.ps1'. This will install the powershell scripts that send dock and status information to the server
 
   - This will also need to run on all new computers computers that users use if we want to keep track of their laptop
+
 
