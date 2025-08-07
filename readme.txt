@@ -78,3 +78,5 @@ Edge Cases:
     the database, have every PC in the office run it, and take a look at all of the names.
 
     Probably don't run the routines on hot spares. I am not sure how the userIDs will react and may add duplicates, or maybe it works beautifully.
+
+    When a new dock type is added, users will have to restart their computers for the script to update to include the new dock info, or maybe make it update every 24 hours with a task?
