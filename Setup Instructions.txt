@@ -1,3 +1,5 @@
+Code Link: https://drive.google.com/drive/folders/1dAupkep91CbGzXFhSA2QdcOS4POcFGS-?usp=sharing
+
 - Ensure that you are plugged into the LAN ethernet
 - Download the Code file from the path: H:/Administration/IT/Systems Developed By Evan/Seat Finder System
 - Download XAMPP version 8.2.12 https://www.apachefriends.org/download.html (you will want a different installation per system implemented)
@@ -91,4 +93,5 @@
 - ADMIN LOGIN: dcadmin, dcadmin8162
 - To get this system functional, have all users run (or have datto run) 'H:\Administration\IT\dock_scripts\p_root-script.ps1'. This will install the powershell scripts that send dock and status
   information to the server
+
   - This will also need to run on all new computers computers that users use if we want to keep track of their laptop
