@@ -1,8 +1,13 @@
 # Creates the actual dock status observer task
 
+# Grab Current Working Directory
+$cwd = Get-Location
+$cwdPath = $cwd.Path
+
+$batchFilePath = Join-Path $cwdPath "run_observe_user_activity.bat"
+$logFile = Join-Path $cwdPath "..\..\storage\logs\laravel.log" | Resolve-Path
+
 $taskName = "dock_observe_user_activity"
-$batchFilePath = "C:\Users\estoller\Desktop\proj\meta\xampp\htdocs\officeMap\resources\tasks\run_observe_user_activity.bat"
-$logFile = "C:\Users\estoller\Desktop\proj\meta\xampp\htdocs\officeMap\storage\logs\laravel.log"
 $message = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') - Starting scheduled task creation.`r`n"
 Add-Content -Path $logFile -Value $message
 
